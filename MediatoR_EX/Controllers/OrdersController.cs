@@ -26,8 +26,11 @@ namespace MediatoR_EX.Controllers
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetAllOrdersAsync()
-        {
+        {        
+            //create a new query to be sent to the handler
             var query =new GetAllOrdersQuery();
+
+            //using mediatr to decouple things here.
             var result=await _mediator.Send(query);
             return Ok(result);
         }
@@ -36,6 +39,7 @@ namespace MediatoR_EX.Controllers
         [Route("[action]")]
         public async Task<IActionResult> AddOrdersAsync([FromBody] string item)
         {            
+            //create a new command to be sent to the handler. It is a command as it is a insert statement.
             var command = new AddOrderCommand(item);
             var result = await _mediator.Send(command);
 

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediatoR_EX.Commands
 {
+    //Command class to be used in the handler
     public class AddOrderCommand : IRequest<bool>
     {
         public string Item { get; }

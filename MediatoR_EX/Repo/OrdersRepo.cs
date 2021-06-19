@@ -9,9 +9,11 @@ namespace MediatoR_EX.Repo
 {
     public class OrdersRepo : IRepo
     {
+        //ignore the casing errors :)
         List<Order> order = new List<Order>();
         public OrdersRepo()
         {
+            //adding some default orders
             Order newOrder1 = new Order();
             newOrder1.OrderId = Guid.NewGuid();
             newOrder1.Item = "books";
@@ -22,10 +24,14 @@ namespace MediatoR_EX.Repo
             newOrder2.Item = "Laptops";
             order.Add(newOrder2);
         }
+
+        //adds new orders to the list
         public bool AddOrder(string item)
         {
             Order newOrder = new Order();
             newOrder.OrderId = Guid.NewGuid();
+
+            //in case the item value is null or empty
             if (string.IsNullOrEmpty(item))
                 return false;
             newOrder.Item = item;
@@ -33,6 +39,7 @@ namespace MediatoR_EX.Repo
             return true;
         }
 
+        //returns all the orders
         public List<Order> GetAllOrders()
         {
             return order;
